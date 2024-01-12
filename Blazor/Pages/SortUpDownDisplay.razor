@@ -1,0 +1,27 @@
+﻿@page "/sortupdowndisplay"
+@using AgaiUI.Data
+@using Agai
+@using Newtonsoft.Json;
+
+@if (Name.Equals(Current))
+{
+    @if (@SortDescending)
+    {
+        <span>▼</span>
+    }
+    else
+    {
+        <span>▲</span>
+    }
+}
+
+@code {
+    [Parameter]
+    public bool SortDescending { get; set; }
+
+    [Parameter]
+    public string Name { get; set; }
+
+    [Parameter]
+    public string? Current { get; set; }
+}
