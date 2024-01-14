@@ -1,4 +1,5 @@
 ﻿@page "/energyflowgrideditor"
+@using System.Linq
 @using Agai
 
 @if (Grid is null)
@@ -9,18 +10,35 @@ else
 {
     if (!Open)
     {
-        <div class="energyFlowGridEditorSummary">
-            <div>Name: @Grid.Name</div>
-        </div>
+        <div>Name: @Grid.Name</div>
     }
     else
     {
         <div class="energyFlowGridEditor">
             <div class="energyFlowGridEditorHeader">@Grid.Name</div>
-            <div class="energyFlowGridEditorGrid">
-                @foreach (var panel in Grid.Panels)
+            <div class="energyFlowGridEditorGrid" style="grid-template-columns: repeat(@Grid.Width, 1fr);">
+                @if (Grid.Panels.All(p => p is null))
                 {
-                    <EnergyFlowPanelDisplay Panel="@panel" /> 
+                    <button @onclick="InitGridToAllEnabled">
+                        Init
+                    </button>
+                }
+                @if (Grid.Panels.Any())
+                {
+                    var i = 0;
+                    @foreach (var panel in Grid.Panels)
+                    {
+                        if (panel == null)
+                        {
+                            // todo extract
+                            <div class="emptyPanel" />
+                        }
+                        else
+                        {
+                            var index = i++;
+                            <EnergyFlowPanelDisplay Panel="@panel" Index="index" PanelModified="SelectCampObject" />
+                        }
+                    }
                 }
             </div>
         </div>
@@ -29,8 +47,23 @@ else
 
 @code {
     [Parameter]
-    public EnergyFlowGrid Grid {get;set;}
+    public EnergyFlowGrid Grid { get; set; }
 
     [Parameter]
     public bool Open { get; set; } = false;
+
+
+    protected async Task InitGridToAllEnabled()
+    {
+        Grid.Panels = Enumerable.Range(0, Grid.Width * Grid.Height)
+            .Select(a => EnergyFlowPanel.Default)
+            .ToList();
+        await Task.CompletedTask;
+    }
+
+    private void SelectCampObject((EnergyFlowPanel Panel, int Index) newPanelStatus)
+    {
+        Grid.Panels[newPanelStatus.Index] = newPanelStatus.Panel;
+        StateHasChanged();
+    }
 }

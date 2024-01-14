@@ -307,195 +307,20 @@ code {
     box-sizing: border-box;
 }
 
-
-.loadedFile {
-    background-color: #268eca62;
-    border-radius: 0.5em;
-    padding: 0.1em;
-    border-radius: 0.5em;
-    padding-bottom: 1em;
+.energyFlowGridEditorGrid {
+    display:grid;
 }
 
-    .loadedFile > div {
-        margin: 1em;
-    }
 
-    .loadedFile > button {
-        align-content: center;
-        width: 90%;
-    }
-
-.loadedFileHolder {
-    overflow-y: auto;
-    max-height: 20em;
-    width: 100%;
-    display: block;
-    overflow-y: auto;
-    border: 1px solid #ccc !important;
-    border-radius: 5px;
-    padding: 0.01em 16px;
+.emptyPanel {
+    grid-column-start: auto;
+    grid-column-end: auto;
+    grid-row-start: auto;
+    grid-row-end: auto;
 }
-
-    .loadedFileHolder table {
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-    .loadedFileHolder th, td {
-        text-align: left;
-        padding: 8px;
-    }
-
-    .loadedFileHolder tr:nth-child(even) {
-        background-color: #1492db12;
-    }
-
-    .loadedFileHolder tr {
-        border-bottom: 1px solid #ddd;
-    }
-
-    .loadedFileholder th[aria-sort="descending"] span::after {
-        content: "▼";
-    }
-
-    .loadedFileholder th[aria-sort="ascending"] span::after {
-        content: "▼";
-    }
-
-.loadedFileList {
-    margin-bottom: 1em;
-}
-
-.center {
-    text-align: center;
-}
-
-.gridHeaders {
-    display: flex;
-}
-
-.canvasContainer {
-    background-color: black;
-}
-
-    .canvasContainer > canvas {
-        width: 100%;
-        height: 100%;
-    }
-
-.campHolder {
-    margin: 1em;
-    background-color: #268eca62;
-    border-radius: 0.5em;
-    padding: 1em;
-    min-height: 60em;
-    border-radius: 0.5em;
-    /* needed for item positioning */
-    position: relative;
-    z-index: 0;
-}
-
-    .campHolder img {
-        z-index: 10;
-        position: absolute;
-        cursor: pointer;
-    }
-
-        .campHolder img:hover {
-            opacity: 0.7;
-        }
-
-.lootOrb {
-    display: flex;
-    background-color: #268eca62;
-    border-radius: 0.5em;
-    padding: 0.1em;
-    min-height: 150px;
-    border-radius: 0.5em;
-}
-
-    .lootOrb > div {
-        margin: 1em;
-        display: flex;
-    }
-
-        .lootOrb > div > div {
-            background-color: #268eca83;
-            border-radius: 0.3em;
-            padding: 0.7em;
-            margin: 0.2em;
-        }
-
-    .lootOrb img {
-        border: double;
-        border-color: #FFFFFF83;
-        border-radius: 0.3em;
-        margin-right: 0.5em;
-        max-width: 5em;
-        background: transparent;
-        align-self: center;
-        display: block;
-    }
-
-.lootOrbSummary {
-    border-radius: 0.3em;
-    background-color: white;
-}
-
-.compareHolder {
-    margin: 1em;
-    background-color: #268eca62;
-    border-radius: 0.5em;
-    padding: 1em;
-    min-height: 60em;
-    border-radius: 0.5em;
-    /* needed for item positioning */
-    position: relative;
-    z-index: 0;
-}
-
-.compareHolderFileSelectors {
-    display: grid;
-    grid-template-columns: auto auto;
-    background-color: #268eca62;
-    border-radius: 0.5em;
-    padding: 1em;
-    min-height: 150px;
-    border-radius: 0.5em;
-    align-items: center;
-}
-
-    .compareHolderFileSelectors > div {
-        display: flex;
-        margin: .1em;
-        margin-bottom: auto;
-        margin-top: auto;
-        border-radius: 0.5em;
-        align-items: center;
-    }
-
-
-.diffView {
-    display: grid;
-    grid-template-columns: auto auto;
-    overflow: scroll;
-    max-height: 50em;
-}
-
-    .diffView > div {
-        padding: 1em;
-    }
-
-.tableNameCollapser {
-    background: white;
-    border-radius: 0.3em;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-}
-
-.keysWithValue {
-    background: white;
-    border-radius: 0.3em;
-    border-top-right-radius: 0;
-    border-top-left-radius: 0;
+.energyFlowPanel {
+    grid-column-start:  auto;
+    grid-column-end:  auto;
+    grid-row-start: auto;
+    grid-row-end:  auto;
 }

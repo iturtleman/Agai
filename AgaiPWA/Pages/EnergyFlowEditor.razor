@@ -14,8 +14,9 @@ else
 {
     @foreach (var grid in grids)
     {
+        var selected = grid.Name == selectedGridName;
         <div>
-            <EnergyFlowGridEditor Grid="@grid" />
+            <EnergyFlowGridEditor Grid="@grid" Open="@selected" />
         </div>
     }
 }
@@ -23,6 +24,7 @@ else
 @code {
 
     internal List<EnergyFlowGrid>? grids { get; set; }
+    internal string selectedGridName { get; set; } = "basic";
 
     protected override async Task OnInitializedAsync()
     {
