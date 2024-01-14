@@ -308,19 +308,23 @@ code {
 }
 
 .energyFlowGridEditorGrid {
-    display:grid;
+    display: grid;
+
 }
 
-
-.emptyPanel {
+.energyFlowPanel {
     grid-column-start: auto;
     grid-column-end: auto;
     grid-row-start: auto;
     grid-row-end: auto;
+    border-radius: 0.5em;
+    border: 1px solid;
+    border-color: aliceblue;
+    padding: 0.1em;
 }
-.energyFlowPanel {
-    grid-column-start:  auto;
-    grid-column-end:  auto;
-    grid-row-start: auto;
-    grid-row-end:  auto;
-}
+
+    .energyFlowPanel:hover {
+        border: 3px solid;
+        border-color: yellow;
+        margin: -2px;
+    }

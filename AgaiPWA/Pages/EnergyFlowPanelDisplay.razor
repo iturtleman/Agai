@@ -3,16 +3,15 @@
 
 @if (Panel is null)
 {
-    <img src="assets/panels/blocked.jpg" />
+    <img src="assets/panels/blocked.png" />
 }
 else
 {
     // TODO: tooltip https://steven-giesel.com/blogPost/fda6848e-61f6-40d0-95c8-45925712b462
     <div class="energyFlowPanel">
-        <p>@Index</p>
         @if (Panel.Name.Equals("Empty"))
         {
-            <img src="assets/panels/emptypanel.jpg" />
+            <img src="assets/panels/emptypanel.png" />
         }
         else
         {

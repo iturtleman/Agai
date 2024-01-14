@@ -16,7 +16,8 @@ else
     {
         <div class="energyFlowGridEditor">
             <div class="energyFlowGridEditorHeader">@Grid.Name</div>
-            <div class="energyFlowGridEditorGrid" style="grid-template-columns: repeat(@Grid.Width, 1fr);">
+            <div class="energyFlowGridEditorGrid" style="grid-template-columns: repeat(@Grid.Width, 1fr);
+    background: url(@GridBackground);">
                 @if (Grid.Panels.All(p => p is null))
                 {
                     <button @onclick="InitGridToAllEnabled">
@@ -52,6 +53,7 @@ else
     [Parameter]
     public bool Open { get; set; } = false;
 
+    public string GridBackground => $"assets/energybackgrounds/{Grid.Name}.jpg";
 
     protected async Task InitGridToAllEnabled()
     {
