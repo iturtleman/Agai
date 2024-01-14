@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "identityapp1": {
+      "connectionInfo": "App registration: AgaiPWA, Tenant: Default Directory (iturtleman.us - Microsoft Entra ID)",
+      "type": "identityapp.default"
+    }
+  }
+}

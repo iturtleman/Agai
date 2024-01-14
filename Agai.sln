@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AgaiEngine", "AgaiEngine\Ag
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{B8E916B7-C01E-4684-8923-0FD5667DC339}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgaiPWA", "AgaiPWA\AgaiPWA.csproj", "{EDD2DEE6-D3B0-4023-943D-2E2E4CDCFCCF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B8E916B7-C01E-4684-8923-0FD5667DC339}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8E916B7-C01E-4684-8923-0FD5667DC339}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8E916B7-C01E-4684-8923-0FD5667DC339}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDD2DEE6-D3B0-4023-943D-2E2E4CDCFCCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDD2DEE6-D3B0-4023-943D-2E2E4CDCFCCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDD2DEE6-D3B0-4023-943D-2E2E4CDCFCCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDD2DEE6-D3B0-4023-943D-2E2E4CDCFCCF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
