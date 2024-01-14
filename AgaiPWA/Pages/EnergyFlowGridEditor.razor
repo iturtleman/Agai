@@ -1,0 +1,36 @@
+﻿@page "/energyflowgrideditor"
+@using Agai
+
+@if (Grid is null)
+{
+    <div>Loading...</div>
+}
+else
+{
+    if (!Open)
+    {
+        <div class="energyFlowGridEditorSummary">
+            <div>Name: @Grid.Name</div>
+        </div>
+    }
+    else
+    {
+        <div class="energyFlowGridEditor">
+            <div class="energyFlowGridEditorHeader">@Grid.Name</div>
+            <div class="energyFlowGridEditorGrid">
+                @foreach (var panel in Grid.Panels)
+                {
+                    <EnergyFlowPanelDisplay Panel="@panel" /> 
+                }
+            </div>
+        </div>
+    }
+}
+
+@code {
+    [Parameter]
+    public EnergyFlowGrid Grid {get;set;}
+
+    [Parameter]
+    public bool Open { get; set; } = false;
+}

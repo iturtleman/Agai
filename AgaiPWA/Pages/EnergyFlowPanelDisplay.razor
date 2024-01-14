@@ -1,0 +1,18 @@
+﻿@page "/energyflowpaneldisplay"
+@using Agai
+
+@if (Panel is null)
+{
+    // nothing here, just show the background
+}
+else
+{
+        <div class="energyFlowGrid">
+            <p>@Panel.Name</p>
+        </div>
+}
+
+@code {
+    [Parameter]
+    public EnergyFlowPanel? Panel { get; set; }
+}

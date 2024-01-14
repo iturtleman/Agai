@@ -1,0 +1,31 @@
+﻿@page "/energyfloweditor"
+@using Agai
+@inject HttpClient httpClient
+
+<PageTitle>Energy Flow Editor</PageTitle>
+
+<h1>Energy Flow Editor!</h1>
+
+@if (grids == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    @foreach (var grid in grids)
+    {
+        <div>
+            <EnergyFlowGridEditor Grid="@grid" />
+        </div>
+    }
+}
+
+@code {
+
+    internal List<EnergyFlowGrid>? grids { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        grids = await httpClient.GetFromJsonAsync<List<EnergyFlowGrid>>("assets/energy-flow-definitions.json");
+    }
+}
