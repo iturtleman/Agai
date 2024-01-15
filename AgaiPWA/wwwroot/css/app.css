@@ -325,6 +325,12 @@ code {
 
     .energyFlowPanel:hover {
         border: 3px solid;
+        border-color: darkmagenta;
+        margin: -2px;
+    }
+
+    .energyFlowPanel.drop-pending {
+        border: 3px solid;
         border-color: yellow;
         margin: -2px;
     }

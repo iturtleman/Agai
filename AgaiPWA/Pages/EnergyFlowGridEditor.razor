@@ -37,7 +37,11 @@ else
                         else
                         {
                             var index = i++;
-                            <EnergyFlowPanelDisplay Panel="@panel" Index="index" PanelModified="SelectCampObject" />
+                            <EnergyFlowPanelDisplay Panel="@panel"
+                                                    Index="index"
+                                                    OnPanelModified="PanelChanged"
+                                                    OnDragStart="HandleDragStart"
+                                                    OnDropped="HandleDropped" />
                         }
                     }
                 }
@@ -54,18 +58,39 @@ else
     public bool Open { get; set; } = false;
 
     public string GridBackground => $"assets/energybackgrounds/{Grid.Name}.jpg";
-
+    internal (EnergyFlowPanel Panel, int Index) DraggingPanel { get; set; }
     protected async Task InitGridToAllEnabled()
     {
-        Grid.Panels = Enumerable.Range(0, Grid.Width * Grid.Height)
+        var leng = Grid.Width * Grid.Height;
+        Grid.Panels = Enumerable.Range(0, leng)
             .Select(a => EnergyFlowPanel.Default)
             .ToList();
+        Grid.Panels[leng / 2 + Grid.Width / 2] = new SourceEnergyPanel();
         await Task.CompletedTask;
     }
 
-    private void SelectCampObject((EnergyFlowPanel Panel, int Index) newPanelStatus)
+    private void PanelChanged((EnergyFlowPanel Panel, int Index) newPanelStatus)
     {
         Grid.Panels[newPanelStatus.Index] = newPanelStatus.Panel;
+        StateHasChanged();
+    }
+
+    private async Task HandleDragStart((EnergyFlowPanel Panel, int Index) panelDragging)
+    {
+        DraggingPanel = panelDragging;
+        await Task.CompletedTask;
+    }
+
+    private async Task HandleDropped((EnergyFlowPanel Panel, int Index) targetPanel)
+    {
+        Swap(targetPanel, DraggingPanel);
+        await Task.CompletedTask;
+    }
+
+    private void Swap((EnergyFlowPanel Panel, int Index) target, (EnergyFlowPanel Panel, int Index) source)
+    {
+        Grid.Panels[target.Index] = source.Panel;
+        Grid.Panels[source.Index] = target.Panel;
         StateHasChanged();
     }
 }

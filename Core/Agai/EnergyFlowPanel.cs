@@ -34,3 +34,28 @@ public record class EmptyEnergyPanel : EnergyFlowPanel
     {
     }
 }
+
+public record class SourceEnergyPanel : EnergyFlowPanel
+{
+    public SourceEnergyPanel()
+        : base(Name: "Source", Rarity: Rarity.None, Boost: 1)
+    {
+        Left = [Effects.Out];
+        Right = [Effects.Out];
+        Up = [Effects.Out];
+        Down = [Effects.Out];
+    }
+}
+
+
+public record class DownSourceEnergyPanel : EnergyFlowPanel
+{
+    public DownSourceEnergyPanel()
+        : base(Name: "DownSource", Rarity: Rarity.None, Boost: 1)
+    {
+        Left = [Effects.Out];
+        Right = [Effects.Out];
+        Up = [Effects.Out];
+        Down = [Effects.Out];
+    }
+}

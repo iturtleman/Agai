@@ -8,12 +8,21 @@
 else
 {
     // TODO: tooltip https://steven-giesel.com/blogPost/fda6848e-61f6-40d0-95c8-45925712b462
-    <div class="energyFlowPanel">
-        @if (Panel.Name.Equals("Empty"))
-        {
-            <img src="assets/panels/emptypanel.png" />
-        }
-        else
+    var additionalClasses = $"{(this.DropPending ? "drop-pending" : null)}";
+    var panelImage = $"{@Panel.Name}Panel.png";
+
+    <div class="energyFlowPanel @additionalClasses"
+         draggable="true"
+         @ondragenter="DragEnter"
+         @ondragleave="DragLeave"
+         @ondrop="Drop"
+         ondragover="event.preventDefault();"
+         @ondragstart="DragStart">
+
+
+        <img src="assets/panels/@panelImage" draggable="false" />
+
+        @if (!ExcludedPanelNames.Contains(Panel.Name))
         {
             <p>@Panel.Name</p>
         }
@@ -28,5 +37,48 @@ else
     public int Index { get; set; }
 
     [Parameter]
-    public EventCallback<(EnergyFlowPanel Panel, int Index)> PanelModified { get; set; }
+    public EventCallback<(EnergyFlowPanel Panel, int Index)> OnPanelModified { get; set; }
+
+    [Parameter]
+    public EventCallback<(EnergyFlowPanel Panel, int Index)> OnDraggedOver { get; set; }
+
+    [Parameter]
+    public EventCallback<(EnergyFlowPanel Panel, int Index)> OnDragLeave { get; set; }
+
+    [Parameter]
+    public EventCallback<(EnergyFlowPanel Panel, int Index)> OnDropped { get; set; }
+
+    [Parameter]
+    public EventCallback<(EnergyFlowPanel Panel, int Index)> OnDragStart { get; set; }
+
+    internal bool DropPending { get; set; }
+    internal HashSet<string> ExcludedPanelNames = new HashSet<string>(StringComparer.InvariantCultureIgnoreCase)
+    {
+        "Empty",
+        "Source",
+    };
+
+    protected async Task DragEnter(DragEventArgs dea)
+    {
+        this.DropPending = true;
+        await OnDraggedOver.InvokeAsync((Panel, Index));
+        StateHasChanged();
+    }
+    protected async Task DragLeave(DragEventArgs dea)
+    {
+        this.DropPending = false;
+        await OnDragLeave.InvokeAsync((Panel, Index));
+        StateHasChanged();
+    }
+    protected async Task Drop(DragEventArgs dea)
+    {
+        this.DropPending = false;
+        await OnDropped.InvokeAsync((Panel, Index));
+        await OnPanelModified.InvokeAsync((Panel, Index));
+        StateHasChanged();
+    }
+    protected async Task DragStart(DragEventArgs dea)
+    {
+        await OnDragStart.InvokeAsync((Panel, Index));
+    }
 }
